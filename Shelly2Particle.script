@@ -5,7 +5,6 @@ let access_token = 'access_token=eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee'; //re
 // ********************************************
 // Get the device ID of the Particle to call
 // ********************************************
-//let device = 'e00fce68f71435549f8515ee'; //Terje test Argon
 let device = 'dddddddddddddddddddddddd';
 // ********************************************
 // Get the exposed function you want to call 
