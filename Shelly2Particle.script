@@ -1,0 +1,60 @@
+// *********************************************
+// Get your Particle access token and enter here
+// *********************************************
+let access_token = 'access_token=eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee'; //redacted
+// ********************************************
+// Get the device ID of the Particle to call
+// ********************************************
+//let device = 'e00fce68f71435549f8515ee'; //Terje test Argon
+let device = 'dddddddddddddddddddddddd';
+// ********************************************
+// Get the exposed function you want to call 
+// ********************************************
+let func = 'Control'; // Function to call on the Particle device
+
+// ****************************
+// Construct https POST strings 
+// ****************************
+let url = 'https://api.particle.io/v1/devices/' + device + '/' + func;
+let shut = access_token + '&args=shut'; //Send the string 'shut' to the Control function
+let open = access_token + '&args=open'; //Send the string 'open' to the Control function
+
+// ***********************************
+//Called when the switch state changes
+// ***********************************
+Shelly.addStatusHandler(function(e) {
+  if (e.component === "switch:0") {
+    if (e.delta.output === true) {
+      print("Switch is on, triggered source:", e.delta.source);
+      Shelly.call(
+        "HTTP.POST", {
+          "url": url,
+          "body": open,
+          "content_type": "application/x-www-form-urlencoded"
+        },
+        function(result) {
+          let response = JSON.parse(result.body);
+          print("Switch ON->");
+          print(".  Connected = ", response.connected);
+          print(".  Return = ", response.return_value);
+        }
+      );
+    }
+    else if (e.delta.output === false) {
+      print("Switch is off, triggered source:", e.delta.source);
+      Shelly.call(
+        "HTTP.POST", {
+          "url": url,
+          "body": shut,
+          "content_type": "application/x-www-form-urlencoded"
+        },
+        function(result) {
+          let response = JSON.parse(result.body);
+          print("Switch OFF->");
+          print(".  Connected = ", response.connected);
+          print(".  Return = ", response.return_value);
+        }
+      );
+    }
+  }
+});
