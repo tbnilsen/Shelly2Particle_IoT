@@ -1,7 +1,8 @@
 # Shelly2Particle_IoT
 Control a Particle IoT device via this Shelly Script
 
-Get your access token of your Particle IoT device using the Command Line Interface (CLI) program
+Get your access token of your Particle IoT device using the Command Line Interface (CLI) program.
+
 Also, use this to optain your IoT device ID.
 
 
