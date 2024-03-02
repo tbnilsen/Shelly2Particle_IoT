@@ -10,13 +10,12 @@ let device = 'dddddddddddddddddddddddd';
 // Get the exposed function you want to call 
 // ********************************************
 let func = 'Control'; // Function to call on the Particle device
-
 // ****************************
 // Construct https POST strings 
 // ****************************
 let url = 'https://api.particle.io/v1/devices/' + device + '/' + func;
-let shut = access_token + '&args=shut'; //Send the string 'shut' to the Control function
-let open = access_token + '&args=open'; //Send the string 'open' to the Control function
+let shut = access_token + '&args=' + 'shut'; //Send the string 'shut' to the Control function
+let open = access_token + '&args=' + 'open'; //Send the string 'open' to the Control function
 
 // ***********************************
 //Called when the switch state changes
